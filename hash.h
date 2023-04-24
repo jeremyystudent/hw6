@@ -25,17 +25,17 @@ struct MyStringHash {
         int counter = 4;
         while(copy.size()> 6){
             std::string substr = copy.substr(copy.size()-6);
-            int x = letterDigitToNumber(substr[0]);
+            size_t x = letterDigitToNumber(substr[0]);
             for(int i = 1;i<6;i++){
                 x *= 36;
                 x += letterDigitToNumber(substr[i]);
             }
-            std::cout << "w[] = " << rValues[counter]*x << std::endl;
+            // std::cout << "w[] = " << rValues[counter]*x << std::endl;
             result += rValues[counter]*x;
             counter--;
             copy = copy.substr(0,copy.size()-6);
         }
-        int x = letterDigitToNumber(copy[0]);
+        size_t x = letterDigitToNumber(copy[0]);
         for(int i = 1;i<copy.size();i++){
             x *= 36;
             x += letterDigitToNumber(copy[i]);
