@@ -105,9 +105,9 @@ public:
     // To be completed
     HASH_INDEX_T next() 
     {
+        stepsTaken++;
         if(stepsTaken >= this->m_){return this->npos;}
         HASH_INDEX_T loc = (this->start_ + stepsTaken*dhstep_) % this->m_;
-        stepsTaken++;
         return loc;
     }
 };
