@@ -19,6 +19,7 @@ struct MyStringHash {
     // hash function entry point (i.e. this is h(k))
     HASH_INDEX_T operator()(const std::string& k) const
     {
+        if(k.size()==0){return 0;}
         std::string copy = k;
         size_t result = 0;
         int counter = 4;
