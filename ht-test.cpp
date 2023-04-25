@@ -27,31 +27,17 @@ int main()
 
     // This is just arbitrary code. Change it to test whatever you like about your 
     // hash table implementation.
-    for(size_t i = 0; i < 10; i++){
-        std::stringstream ss;
-        ss << "hi" << i;
-        ht.insert({ss.str(), i});
-    }
-    if( ht.find("hi1") != nullptr ){
-        cout << "Found hi1" << endl;
-        ht["hi1"] += 1;
-        cout << "Incremented hi1's value to: " << ht["hi1"] << endl;
-    }
-    if( ht.find("doesnotexist") == nullptr ){
-        cout << "Did not find: doesnotexist" << endl;
-    }
-    cout << "HT size: " << ht.size() << endl;
-    ht.remove("hi7");
-    ht.remove("hi9");
-    cout << "HT size: " << ht.size() << endl;
-    if( ht.find("hi9") != nullptr ){
-        cout << "Found hi9" << endl;
-    }
-    else {
-        cout << "Did not find hi9" << endl;
-    }
-    ht.insert({"hi7",17});
-    cout << "size: " << ht.size() << endl;
+    HashTable<string, int, LinearProber<string>, hash<string>, equal_to<string> > table;
+    //Insert (one, 1)
+    pair<string, int> pair1("one", 1);
+    table.insert(pair1);
+    //Insert (two, 2)
+    pair<string, int> pair2("two", 2);
+    table.insert(pair2);
+    //Insert (three, 3)
+    pair<string, int> pair3("three", 3);
+    table.insert(pair3);
+
 
     return 0;
 }
