@@ -7,6 +7,14 @@
 #include <sstream>
 #include <functional>
 using namespace std;
+
+struct TestHash2 {
+    HASH_INDEX_T operator()(int k) const
+    {
+        return k;
+    }
+};
+
 int main()
 {
     DoubleHashProber<std::string, MyStringHash > dh;
@@ -44,5 +52,6 @@ int main()
     }
     ht.insert({"hi7",17});
     cout << "size: " << ht.size() << endl;
+
     return 0;
 }
