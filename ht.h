@@ -149,7 +149,7 @@ public:
             deleted = false;
         }
     };
-void printTable();
+std::string printTable();
     /**
      * @brief Construct a new Hash Table object
      * 
@@ -473,12 +473,13 @@ void HashTable<K, V, Prober, Hash, KEqual>::reportAll(std::ostream& out) const
 }
 
 template<typename K, typename V, typename Prober, typename Hash, typename KEqual>
-void HashTable<K, V, Prober, Hash, KEqual>::printTable(){
-    std::cout << "{ ";
+std::string HashTable<K, V, Prober, Hash, KEqual>::printTable(){
+    std::string str = "{ ";
     for(int i = 0;i<table_.size();i++){
-        std::cout << table_[i] << " ";
+        str = str + table_[i] + " ";
     }
-    std::cout << "}" << std::endl;
+    str = str + "}";
+    return str;
 }
 
 #endif
