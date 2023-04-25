@@ -474,11 +474,11 @@ void HashTable<K, V, Prober, Hash, KEqual>::reportAll(std::ostream& out) const
 
 template<typename K, typename V, typename Prober, typename Hash, typename KEqual>
 void HashTable<K, V, Prober, Hash, KEqual>::printTable(){
-    cout << "{ ";
+    std::cout << "{ ";
     for(int i = 0;i<table_.size();i++){
-        cout << table[i] << " ";
+        std::cout << table_[i] << " ";
     }
-    cout << "}" << endl;
+    std::cout << "}" << std::endl;
 }
 
 #endif
