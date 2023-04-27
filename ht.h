@@ -426,11 +426,14 @@ template<typename K, typename V, typename Prober, typename Hash, typename KEqual
 void HashTable<K,V,Prober,Hash,KEqual>::resize()
 {
     mIndex_++;
-    std::vector<HashItem*> tempTable(CAPACITIES[mIndex_],nullptr);
-    for(int i = 0;i<table_.size();i++){
-        tempTable[i] = table_[i];
+    std::vector<HashItem*> original = table_;
+    table_ = std::vector<HashItem*>(CAPACITIES[mIndex_],nullptr);
+    for(int i = 0;i<original.size();i++){
+        HashItem* item = original[i]; 
+        if(nullptr != item && !item->deleted){
+            insert(item->item);
+        }
     }
-    table_ = tempTable;
 }
 
 // Completed
