@@ -338,7 +338,10 @@ size_t HashTable<K,V,Prober,Hash,KEqual>::size() const
 template<typename K, typename V, typename Prober, typename Hash, typename KEqual>
 void HashTable<K,V,Prober,Hash,KEqual>::insert(const ItemType& p)
 {
-    double count = size();
+    double count = 0;
+    for(int i = 0;i<table_.size();i++){
+        if(table_[i] != nullptr){count++;}
+    }
     if(alpha <= count/CAPACITIES[mIndex_]){resize();}
     HASH_INDEX_T idx = probe(p.first);
     if(idx == npos){throw std::logic_error("Cannot be inserted.");}
