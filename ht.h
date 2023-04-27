@@ -341,6 +341,7 @@ void HashTable<K,V,Prober,Hash,KEqual>::insert(const ItemType& p)
     double count = size();
     if(alpha <= count/CAPACITIES[mIndex_]){resize();}
     HASH_INDEX_T idx = probe(p.first);
+    if(idx == npos){throw std::logic_error("Cannot be inserted.");}
     table_[idx] = new HashItem(p);
 }
 
