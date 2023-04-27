@@ -432,6 +432,7 @@ void HashTable<K,V,Prober,Hash,KEqual>::resize()
     mIndex_++;
     std::vector<HashItem*> original = table_;
     table_ = std::vector<HashItem*>(CAPACITIES[mIndex_],nullptr);
+    total = 0;
     for(int i = 0;i<original.size();i++){
         HashItem* item = original[i]; 
         if(nullptr != item && !item->deleted){
