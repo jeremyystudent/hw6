@@ -356,7 +356,6 @@ void HashTable<K,V,Prober,Hash,KEqual>::remove(const KeyType& key)
     if(idx != npos && table_[idx] != nullptr){
         table_[idx]->deleted = true;
     }
-    total--;
 }
 
 
