@@ -276,6 +276,7 @@ private:
 
     // ADD MORE DATA MEMBERS HERE, AS NECESSARY
     double alpha;
+    double total;
 
 };
 
@@ -302,6 +303,7 @@ HashTable<K,V,Prober,Hash,KEqual>::HashTable(
     table_ = std::vector<HashItem*>(CAPACITIES[mIndex_],nullptr);
     totalProbes_ = 0;
     alpha = resizeAlpha;
+    total = 0;
 }
 
 // To be completed
@@ -338,13 +340,11 @@ size_t HashTable<K,V,Prober,Hash,KEqual>::size() const
 template<typename K, typename V, typename Prober, typename Hash, typename KEqual>
 void HashTable<K,V,Prober,Hash,KEqual>::insert(const ItemType& p)
 {
-    double count = 0;
-    for(int i = 0;i<table_.size();i++){
-        if(table_[i] != nullptr){count++;}
-    }
-    if(alpha <= count/CAPACITIES[mIndex_]){resize();}
+    
+    if(alpha <= total/CAPACITIES[mIndex_]){resize();}
     HASH_INDEX_T idx = probe(p.first);
     if(idx == npos){throw std::logic_error("Cannot be inserted.");}
+    if(table_[idx] == nullptr){total++;}
     table_[idx] = new HashItem(p);
 }
 
@@ -356,6 +356,7 @@ void HashTable<K,V,Prober,Hash,KEqual>::remove(const KeyType& key)
     if(idx != npos && table_[idx] != nullptr){
         table_[idx]->deleted = true;
     }
+    total--;
 }
 
 
